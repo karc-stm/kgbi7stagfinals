@@ -765,7 +765,6 @@ h1 {
   }
 }
 
-.result-card,
 .summary-card {
   display: grid;
   grid-template-columns: 82px minmax(0, 1fr);
@@ -869,6 +868,9 @@ h1 {
 .result-card {
   position: relative;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
   gap: 12px;
   padding: 12px;
 }
@@ -907,10 +909,10 @@ h1 {
 }
 
 .result-title {
-  margin: -4px 0 0;
-  overflow-wrap: anywhere;
+  margin: -2px 0 0;
+  overflow-wrap: normal;
   color: #ffffff;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   line-height: 1.05;
   text-align: center;
 }
@@ -929,20 +931,21 @@ h1 {
 
 .result-matchup {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
-  gap: 6px;
+  grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+  gap: 8px;
   align-items: center;
-  min-height: 40px;
-  padding: 8px;
+  min-height: 46px;
+  padding: 9px;
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 6px;
   background: var(--field-bg);
 }
 
 .result-matchup span {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
+  word-break: normal;
   color: #ffffff;
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   font-weight: 800;
   line-height: 1.15;
 }
@@ -967,7 +970,7 @@ h1 {
   gap: 3px;
   justify-items: center;
   text-align: center;
-  padding-top: 4px;
+  padding-top: 8px;
   border-top: 1px solid rgba(39, 51, 73, 0.7);
 }
 

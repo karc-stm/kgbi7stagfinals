@@ -172,15 +172,16 @@ function findResult(fightNumber) {
 }
 
 function resultLabel(result) {
-  if (!result) return 'Pending';
-  if (result.result === 'LEFT_WIN') return 'Left Win';
-  if (result.result === 'RIGHT_WIN') return 'Right Win';
-  if (result.result === 'DRAW') return 'Draw';
-  if (result.result === 'CANCEL') return 'Cancel';
-  return 'Pending';
+  if (!result) return 'PENDING';
+  if (result.result === 'LEFT_WIN') return 'LEFT WIN';
+  if (result.result === 'RIGHT_WIN') return 'RIGHT WIN';
+  if (result.result === 'DRAW') return 'DRAW';
+  if (result.result === 'CANCEL') return 'CANCELLED';
+  return 'PENDING';
 }
 
 function formatResultCode(value) {
+  if (value === 'CANCEL') return 'CANCELLED';
   return String(value || 'PENDING').replace(/_/g, ' ');
 }
 
@@ -302,8 +303,6 @@ function renderResults() {
           <p class="date-label">Fight #${escapeHtml(row.fightNumber)}</p>
           <span class="result-pill">${escapeHtml(formatResultCode(row.result))}</span>
         </header>
-
-        <h3 class="result-title">${escapeHtml(resultLabel(row))}</h3>
 
         <div class="result-matchup">
           <span>${escapeHtml(row.leftEntry || '-')}</span>
