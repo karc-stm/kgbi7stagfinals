@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KGBI 7 Stag Derby Finals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero" aria-labelledby="page-title">
+      <img class="brand-logo" src="assets/kgbi-logo.png" alt="KGBI logo">
+
+      <div class="hero-copy">
+        <p class="eyebrow">Official Fight Monitoring</p>
+        <h1 id="page-title">KGBI 7 Stag Derby Finals</h1>
+        <p class="subtitle">Open a fight date to monitor match results, review declared outcomes, and check entry summaries.</p>
+      </div>
+    </section>
+
+    <section id="homeView" class="date-panel" aria-label="Fight dates">
+      <article class="date-card overall-card" data-date-card="Overall Results">
+        <div>
+          <p class="date-label">Viewer Page</p>
+          <h2>Overall Results</h2>
+        </div>
+        <dl class="date-stats">
+          <div>
+            <dt>Includes</dt>
+            <dd>September 1 / September 3 / Combined</dd>
+          </div>
+          <div>
+            <dt>Access</dt>
+            <dd>Public read-only rankings</dd>
+          </div>
+        </dl>
+        <button class="button button-primary" type="button" id="openOverallButton">Open Overall Results</button>
+      </article>
+
+      <article class="date-card" data-date-card="September 1">
+        <div>
+          <p class="date-label">Fight Date</p>
+          <h2>September 1</h2>
+        </div>
+        <dl class="date-stats">
+          <div>
+            <dt>Fights</dt>
+            <dd>Ready</dd>
+          </div>
+          <div>
+            <dt>Views</dt>
+            <dd>Monitor / Results / Summary</dd>
+          </div>
+        </dl>
+        <button class="button button-primary" type="button" data-open-date="September 1">Open September 1</button>
+      </article>
+
+      <article class="date-card" data-date-card="September 3">
+        <div>
+          <p class="date-label">Fight Date</p>
+          <h2>September 3</h2>
+        </div>
+        <dl class="date-stats">
+          <div>
+            <dt>Fights</dt>
+            <dd>Ready</dd>
+          </div>
+          <div>
+            <dt>Views</dt>
+            <dd>Monitor / Results / Summary</dd>
+          </div>
+        </dl>
+        <button class="button button-primary" type="button" data-open-date="September 3">Open September 3</button>
+      </article>
+    </section>
+
+    <section id="workflowView" class="workflow-panel" aria-label="Available views">
+      <div class="workflow-item">
+        <span class="step-number">01</span>
+        <div>
+          <h3>Fight Monitor</h3>
+          <p>Declare left win, right win, draw, or cancel per fight.</p>
+        </div>
+      </div>
+      <div class="workflow-item">
+        <span class="step-number">02</span>
+        <div>
+          <h3>Results</h3>
+          <p>Review saved results by selected fight date.</p>
+        </div>
+      </div>
+      <div class="workflow-item">
+        <span class="step-number">03</span>
+        <div>
+          <h3>Summary</h3>
+          <p>See each entry's wins, losses, draws, and cancelled fights.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="monitorView" class="monitor-view hidden" aria-label="Fight monitor">
+      <div class="monitor-toolbar">
+        <button class="button button-secondary" type="button" id="backButton">Back</button>
+        <div>
+          <p class="date-label">Selected Date</p>
+          <h2 id="selectedDateTitle">September 1</h2>
+        </div>
+      </div>
+
+      <div class="view-tabs" role="tablist" aria-label="Monitoring views">
+        <button class="tab-button is-active" type="button" data-view="fights">Fights</button>
+        <button class="tab-button" type="button" data-view="results">Results</button>
+        <button class="tab-button" type="button" data-view="summary">Summary</button>
+      </div>
+
+      <input id="searchInput" class="search-input" type="search" placeholder="Search fight or entry name">
+
+      <div id="statusMessage" class="state-msg">Choose a date to load fights.</div>
+      <div id="fightList" class="fight-list"></div>
+      <div id="resultList" class="result-list hidden"></div>
+      <div id="summaryList" class="summary-list hidden"></div>
+    </section>
+
+    <section id="overallView" class="monitor-view hidden" aria-label="Overall results">
+      <div class="monitor-toolbar">
+        <button class="button button-secondary" type="button" id="overallBackButton">Back</button>
+        <div>
+          <p class="date-label">Viewer Page</p>
+          <h2>Overall Results</h2>
+        </div>
+      </div>
+
+      <div class="view-tabs overall-tabs" role="tablist" aria-label="Overall result dates">
+        <button class="tab-button is-active" type="button" data-overall-date="September 1">Sept 1</button>
+        <button class="tab-button" type="button" data-overall-date="September 3">Sept 3</button>
+        <button class="tab-button" type="button" data-overall-date="Combined">Combined</button>
+      </div>
+
+      <input id="overallSearchInput" class="search-input" type="search" placeholder="Search entry or owner">
+
+      <div id="overallStatusMessage" class="state-msg">Choose an overall date.</div>
+      <div id="overallList" class="summary-list"></div>
+    </section>
+  </main>
+  <div id="passwordOverlay" class="result-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+    <div class="password-card">
+      <p class="date-label">Authorized Access</p>
+      <h2 id="passwordTitle">Enter Password</h2>
+      <input id="passwordInput" class="search-input" type="password" autocomplete="current-password" placeholder="Password">
+      <p id="passwordError" class="password-error"></p>
+      <div class="password-actions">
+        <button class="button button-secondary" type="button" id="cancelPasswordButton">Cancel</button>
+        <button class="button button-primary" type="button" id="submitPasswordButton">Continue</button>
+      </div>
+    </div>
+  </div>
+  <div id="resultOverlay" class="result-overlay hidden" role="status" aria-live="polite">
+    <div class="result-overlay-card">
+      <p id="overlayLabel" class="date-label">Result Saved</p>
+      <span class="overlay-spinner" aria-hidden="true"></span>
+      <h2 id="overlayTitle">Fight Declared</h2>
+      <p id="overlayText"></p>
+      <div id="overlayDetails" class="overlay-details"></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
